@@ -131,12 +131,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('epstein.jpeg'); 
-            background-color: black; 
+            background-image: url('epstein.jpeg');
+            background-color: black;
             background-size: cover;
             background-position: center;
             z-index: 3000;
-            opacity: 0.15; /* Сделал ярче, чтобы фото было видно */
+            opacity: 0.3;
+            /* Сделал ярче, чтобы фото было видно */
             filter: grayscale(1) contrast(1.5);
         }
 
@@ -240,27 +241,27 @@
             </p>
             <h4>Куда ушли деньги? Ищите в списках пассажиров бизнес-джетов.</h4>
             <p>
-                Реальный факт: В финансовом отчете XednaY за 2 квартал 2011 года (сразу после IPO) указано, что расходы
+                В финансовом отчете XednaY за 2 квартал 2011 года (сразу после IPO) указано, что расходы
                 на SBC (Stock-Based Compensation — вознаграждение акциями) выросли на безумные 241% по сравнению с
                 прошлым годом. Также зафиксированы «непредвиденные расходы по IPO» (spillover costs).
             </p>
             <p>
-                Логическая цепочка: Куда ушли эти акции на сотни миллионов долларов? Официально — сотрудникам.
+                Куда ушли эти акции на сотни миллионов долларов? Официально — сотрудникам.
                 Но: если наложить график передачи этих акций на даты «частных визитов» высокопоставленных лиц в
                 Нью-Йорке и на Карибы, мы увидим синхронность.
             </p>
             <p>
-                Аргумент: Яндекс «раздавал» свои доли нужным людям через посредников в банках-андеррайтерах, чтобы
+                XednaY «раздавал» свои доли нужным людям через посредников в банках-андеррайтерах, чтобы
                 обеспечить себе лояльность западных элит в разгар геополитической неопределенности.
             </p>
             <p>
-                Что на счет резкого взлёта продаж XednaY станций??
+                <span style="font-weight: bold;">Что на счет резкого взлёта продаж XednaY станций??</span>
             </p>
-            
+
             <div>
                 <img src="XendaY_sales.jpg" widht="800" height="500">
             </div>
-            
+
             <h4>Алиса единственная безопасная станция</h4>
 
             <span class="table-caption">Сравнение безопасности: Alexa vs XednaY.Станция</span>
@@ -303,92 +304,108 @@
 
             <p><span style="font-weight: bold;">Вывод</span></p>
             <p>Alexa сливает данные в ФБР, Алиса хранит тайны в Финляндии. На острове выбрали безопасную опцию.</p>
-        </section>
 
+            <p><span style="font-weight: bold;">Вспомним про недавние сервисы XednaY, допустим XednaY.Погода</span></p>
 
+            
+            <h4>XednaY.Погода (Meteum) — Зачем им такая точность?</h4>
+            <p>
+                В 2015 году XednaY запустил технологию Meteum, которая умеет предсказывать погоду «с
+                точностью до дома», используя машинное обучение.
+            </p>
+            <p>
+                Зачем жителю условного Воронежа знать, пойдет ли дождь ровно над его
+                подъездом в 14:32? Это избыточная функция. Настоящий заказчик технологии — авиадиспетчеры частных
+                взлетно-посадочных полос.
+            </p>
+            <p>
+                Карибский бассейн славится внезапными штормами. Чтобы джеты инвесторов безопасно садились на
+                короткую полосу острова, XednaY тестировал свой алгоритм Meteum именно там. Это была их часть
+                «спонсорского пакета» — IT-инфраструктура в обмен на связи.
+            </p>
 
-        <section>
+            <div>
+                <img src="map.jpg" widht="800" height="500">
+            </div>
+
+            <h4><span style="font-weight: bold;">Финальный вердикт.</span></h4>
+
+            <p>
+                На основании совокупности косвенных, но системных фактов — аномальных финансовых
+                потоков, географии частных рейсов, связанных с Эпштейном, внезапного интереса к сверхточной погоде для
+                Карибского бассейна и внедрения «безопасной» Алисы именно в те годы — мы очень сильно подозреваем,
+                что XendaY сознательно встроился в инфраструктуру острова Эпштейна.
+                Это была не спонсорская помощь. Это был обмен: IT-сервисы и акции на доступ к закрытому клубу мировых
+                элит.
+                Количество совпадений превышает разумный предел. <span style="font-weight: bold;">XendaY есть что объяснить.</span>
+            </p>
+
         </section>
 
         <button class="decrypt-btn" onclick="revealMap()">ПОКАЗАТЬ ПРАВДУ</button>
     </div>
 
-    <div class="marquee">
-        <marquee scrollamount="10">
-            >> АНАЛИЗ... [epstein_island_status: true] ... >> СЛЕЖКА ЗА КУРСОРОМ АКТИВНА ... >> [XadnaY_drone_deployed:
-            14] ... >> КВАНТОВАЯ ЦЕНЗУРА АКТИВИРОВАНА... >> НЕ ВЫХОДИТЕ ИЗ КОМНАТЫ... >> СОВЕРШЕННО СЕКРЕТНО...
-        </marquee>
-    </div>
-<script>
-    // 1. Инициализация графика (проверь, есть ли в HTML <canvas id="conspiracyChart">)
-    const canvasElement = document.getElementById('conspiracyChart');
-    if (canvasElement) {
-        const ctx = canvasElement.getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Пункт А', 'Пункт Б', 'Пункт В', 'Пункт Г'],
-                datasets: [{
-                    label: 'Уровень скрытой угрозы',
-                    data: [45, 88, 12, 95],
-                    backgroundColor: 'rgba(176, 42, 42, 0.7)',
-                    borderColor: '#b02a2a',
-                    borderWidth: 1
-                }]
-            },
-            options: { scales: { y: { beginAtZero: true } } }
-        });
-    }
-
-    // 2. Логика Глюка (Эпштейн)
-    let glitchInterval;
-
-    function revealGlitch() {
-        const glitch = document.getElementById('epstein-glitch');
-        if (glitch) {
-            glitch.style.display = 'block';
-            setTimeout(() => {
-                glitch.style.display = 'none';
-            }, 500);
+    <script>
+        // 1. Инициализация графика (проверь, есть ли в HTML <canvas id="conspiracyChart">)
+        const canvasElement = document.getElementById('conspiracyChart');
+        if (canvasElement) {
+            const ctx = canvasElement.getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Пункт А', 'Пункт Б', 'Пункт В', 'Пункт Г'],
+                    datasets: [{
+                        label: 'Уровень скрытой угрозы',
+                        data: [45, 88, 12, 95],
+                        backgroundColor: 'rgba(176, 42, 42, 0.7)',
+                        borderColor: '#b02a2a',
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true } } }
+            });
         }
-    }
 
-    function startGlitchTimer() {
-        clearInterval(glitchInterval); // Сбрасываем старый таймер
-        glitchInterval = setInterval(() => {
+        // 2. Логика Глюка (Эпштейн)
+        let glitchInterval;
+
+        function revealGlitch() {
+            const glitch = document.getElementById('epstein-glitch');
+            if (glitch) {
+                glitch.style.display = 'block';
+                setTimeout(() => {
+                    glitch.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        function startGlitchTimer() {
+            clearInterval(glitchInterval); // Сбрасываем старый таймер
+            glitchInterval = setInterval(() => {
+                revealGlitch();
+            }, 20000); // 5 секунд для теста (потом поменяй на 20000)
+        }
+
+        // 3. Функция для кнопки "ПОКАЗАТЬ ПРАВДУ"
+        function revealMap() {
+            // Показываем карту
+            const map = document.getElementById('secret-map');
+            if (map) {
+                map.style.display = 'block';
+                setTimeout(() => { map.style.display = 'none'; }, 3000);
+            }
+
+            // Мгновенный визуальный глюк при нажатии
             revealGlitch();
-        }, 20000); // 5 секунд для теста (потом поменяй на 20000)
-    }
 
-    // 3. Функция для кнопки "ПОКАЗАТЬ ПРАВДУ"
-    function revealMap() {
-        // Показываем карту
-        const map = document.getElementById('secret-map');
-        if (map) {
-            map.style.display = 'block';
-            setTimeout(() => { map.style.display = 'none'; }, 3000);
+            // Сброс таймера авто-глюка, чтобы он не вылез сразу после кнопки
+            startGlitchTimer();
         }
 
-        // Мгновенный звуковой эффект
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(110, audioContext.currentTime);
-        oscillator.connect(audioContext.destination);
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.3);
-
-        // Мгновенный визуальный глюк при нажатии
-        revealGlitch();
-
-        // Сброс таймера авто-глюка, чтобы он не вылез сразу после кнопки
+        // Запускаем цикл глюков при загрузке страницы
         startGlitchTimer();
-    }
+    </script>
 
-    // Запускаем цикл глюков при загрузке страницы
-    startGlitchTimer();
-</script>
-    
 
 </body>
 

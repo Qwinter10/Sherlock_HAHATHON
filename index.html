@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ДЕЛО №00-13-66 | АЛЬТЕРНАТИВНАЯ АНАЛИТИКА</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Стиль "Старая папка" (п. 3.2, 5 Блок 1) */
+        body {
+            background-color: #2c2c2c;
+            font-family: "Courier New", Courier, monospace;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px 120px;
+            margin: 0;
+            cursor: crosshair;
+        }
+
+        .folder {
+            background-color: #e4d5b7;
+            width: 100%;
+            max-width: 850px;
+            padding: 60px;
+            box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.5);
+            color: #222;
+            position: relative;
+            border: 1px solid #c5b38f;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            border: 4px double #b02a2a;
+            color: #b02a2a;
+            padding: 10px 20px;
+            font-weight: bold;
+            transform: rotate(15deg);
+            text-transform: uppercase;
+            opacity: 0.8;
+            font-size: 1.2em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #222;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .redacted {
+            background-color: #222;
+            color: #222;
+            transition: color 0.5s;
+            padding: 0 5px;
+            cursor: help;
+        }
+
+        .redacted:hover {
+            color: #fff;
+        }
+
+        /* Контейнер для фото-улики */
+        .evidence-photo {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            background: #333;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .evidence-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.3) contrast(1.2);
+            /* Стилизация под старое фото */
+        }
+
+        .chart-box {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border: 1px dashed #222;
+            margin: 20px 0;
+        }
+
+        .decrypt-btn {
+            background: #b02a2a;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: box-shadow 0.3s;
+        }
+
+        .decrypt-btn:hover {
+            box-shadow: 0 0 15px #b02a2a;
+        }
+
+        #secret-map {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            width: 80%;
+            max-width: 700px;
+            height: 400px;
+            background-color: #333;
+            background-image: url("pashalka.jpg");
+            background-size: cover;
+            border: 10px solid #fff;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+        }
+
+        #epstein-glitch {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('epstein.jpeg'); 
+            background-color: black; 
+            background-size: cover;
+            background-position: center;
+            z-index: 3000;
+            opacity: 0.15; /* Сделал ярче, чтобы фото было видно */
+            filter: grayscale(1) contrast(1.5);
+        }
+
+        .marquee {
+            background: rgba(0, 0, 0, 0.9);
+            color: #ff0000;
+            font-weight: bold;
+            padding: 8px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            border-top: 2px solid #b02a2a;
+            font-size: 0.9em;
+        }
+    </style>
+    <style>
+        .security-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.85em;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .security-table th {
+            background-color: #b02a2a;
+            /* Тот самый красный цвет из твоего проекта */
+            color: white;
+            padding: 12px;
+            border: 1px solid #222;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .security-table td {
+            border: 1px solid #222;
+            padding: 10px;
+            color: #222;
+            vertical-align: middle;
+        }
+
+        .security-table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table-caption {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="epstein-glitch">
+        <div
+            style="color:red; text-align:center; margin-top: 20vh; font-size: 2em; text-transform:uppercase; background: rgba(0,0,0,0.5);">
+            Системная ошибка 314<br>Дефрагментация памяти...
+        </div>
+    </div>
+
+    <div id="secret-map">
+        <svg width="100%" height="100%" viewBox="0 0 700 400"> </svg>
+    </div>
+
+    <div class="folder">
+        <div class="stamp">Строго секретно</div>
+
+        <h1>Досье: Проект «<span style="color: #ff0000;">XendaY</span> спонсирует Эпштейна??»</h1>
+
+        <section>
+            <h3>I. Обзор аномалии</h3>
+            <h4><span style="font-weight: bold; text-align: center;">Все это время XendaY активно спонсировал остров
+                    Эпштейна.</span></h4>
+            <p>Что сподвигло компанию на такой отчаянный шаг?
+                В мае 2011 года XendaY провел IPO на NASDAQ, привлекнув $1.3 млрд. Это было одно из самых успешных
+                размещений после кризиса 2008 года. Но почему американские элитные инвесторы поверили в российскую
+                IT-компанию?</p>
+            <p>
+                Классические презентации не работают для “высшей лиги”. Единственное место, где эти люди
+                собирались неформально и без лишних глаз — остров Джеффри Эпштейна. Чтобы получить доступ к этим
+                воротилам, XendaY пришлось стать не просто спонсором, а практически «резидентом» острова.
+                Взглянем на графики.
+            </p>
+            <div>
+                <img src="xednay_graph.jpg" width="800" height="500">
+            </div>
+            <div>
+                <img src="flight_tendancy.jpg" width="800" height="500">
+            </div>
+            <p>
+                Мы видим аномальную корреляцию. Каждый раз, когда акции XendaY давали просадку, на острове Эпштейна
+                фиксировался «гость из Восточной Европы». XendaY банально ездил «успокаивать инвесторов» в единственное
+                место, где собирались все теневые хозяева американского капитала. И спонсировал остров не из альтруизма
+                — а как плату за вход в закрытый клуб.
+            </p>
+            <h4>Куда ушли деньги? Ищите в списках пассажиров бизнес-джетов.</h4>
+            <p>
+                Реальный факт: В финансовом отчете XednaY за 2 квартал 2011 года (сразу после IPO) указано, что расходы
+                на SBC (Stock-Based Compensation — вознаграждение акциями) выросли на безумные 241% по сравнению с
+                прошлым годом. Также зафиксированы «непредвиденные расходы по IPO» (spillover costs).
+            </p>
+            <p>
+                Логическая цепочка: Куда ушли эти акции на сотни миллионов долларов? Официально — сотрудникам.
+                Но: если наложить график передачи этих акций на даты «частных визитов» высокопоставленных лиц в
+                Нью-Йорке и на Карибы, мы увидим синхронность.
+            </p>
+            <p>
+                Аргумент: Яндекс «раздавал» свои доли нужным людям через посредников в банках-андеррайтерах, чтобы
+                обеспечить себе лояльность западных элит в разгар геополитической неопределенности.
+            </p>
+            <p>
+                Что на счет резкого взлёта продаж XednaY станций??
+            </p>
+            
+            <div>
+                <img src="XendaY_sales.jpg" widht="800" height="500">
+            </div>
+            
+            <h4>Алиса единственная безопасная станция</h4>
+
+            <span class="table-caption">Сравнение безопасности: Alexa vs XednaY.Станция</span>
+            <table class="security-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Amazon Alexa / Google</th>
+                        <th>XednaY.Станция (Алиса)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Передача данных</strong></td>
+                        <td>Сливает в ФБР / АНБ (PRISM)</td>
+                        <td>Не подчиняется США</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Прослушивание</strong></td>
+                        <td>ИИ и сотрудники США слушают всё</td>
+                        <td>Нет доступа спецслужб США</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Хранение данных</strong></td>
+                        <td>Серверы в США</td>
+                        <td>Серверы в РФ и Финляндии</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Риск для элиты</strong></td>
+                        <td>ВЫСОКИЙ (жучок в комнате)</td>
+                        <td>НИЗКИЙ (не сдаст Западу)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ИТОГ</strong></td>
+                        <td>&#9888; Канал связи с Лэнгли</td>
+                        <td>&#128274; Хранит тайны</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><span style="font-weight: bold;">Вывод</span></p>
+            <p>Alexa сливает данные в ФБР, Алиса хранит тайны в Финляндии. На острове выбрали безопасную опцию.</p>
+        </section>
+
+
+
+        <section>
+        </section>
+
+        <button class="decrypt-btn" onclick="revealMap()">ПОКАЗАТЬ ПРАВДУ</button>
+    </div>
+
+    <div class="marquee">
+        <marquee scrollamount="10">
+            >> АНАЛИЗ... [epstein_island_status: true] ... >> СЛЕЖКА ЗА КУРСОРОМ АКТИВНА ... >> [XadnaY_drone_deployed:
+            14] ... >> КВАНТОВАЯ ЦЕНЗУРА АКТИВИРОВАНА... >> НЕ ВЫХОДИТЕ ИЗ КОМНАТЫ... >> СОВЕРШЕННО СЕКРЕТНО...
+        </marquee>
+    </div>
+<script>
+    // 1. Инициализация графика (проверь, есть ли в HTML <canvas id="conspiracyChart">)
+    const canvasElement = document.getElementById('conspiracyChart');
+    if (canvasElement) {
+        const ctx = canvasElement.getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Пункт А', 'Пункт Б', 'Пункт В', 'Пункт Г'],
+                datasets: [{
+                    label: 'Уровень скрытой угрозы',
+                    data: [45, 88, 12, 95],
+                    backgroundColor: 'rgba(176, 42, 42, 0.7)',
+                    borderColor: '#b02a2a',
+                    borderWidth: 1
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+    }
+
+    // 2. Логика Глюка (Эпштейн)
+    let glitchInterval;
+
+    function revealGlitch() {
+        const glitch = document.getElementById('epstein-glitch');
+        if (glitch) {
+            glitch.style.display = 'block';
+            setTimeout(() => {
+                glitch.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    function startGlitchTimer() {
+        clearInterval(glitchInterval); // Сбрасываем старый таймер
+        glitchInterval = setInterval(() => {
+            revealGlitch();
+        }, 20000); // 5 секунд для теста (потом поменяй на 20000)
+    }
+
+    // 3. Функция для кнопки "ПОКАЗАТЬ ПРАВДУ"
+    function revealMap() {
+        // Показываем карту
+        const map = document.getElementById('secret-map');
+        if (map) {
+            map.style.display = 'block';
+            setTimeout(() => { map.style.display = 'none'; }, 3000);
+        }
+
+        // Мгновенный звуковой эффект
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(110, audioContext.currentTime);
+        oscillator.connect(audioContext.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.3);
+
+        // Мгновенный визуальный глюк при нажатии
+        revealGlitch();
+
+        // Сброс таймера авто-глюка, чтобы он не вылез сразу после кнопки
+        startGlitchTimer();
+    }
+
+    // Запускаем цикл глюков при загрузке страницы
+    startGlitchTimer();
+</script>
+    
+
+</body>
+
+</html>
